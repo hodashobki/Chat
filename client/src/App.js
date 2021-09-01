@@ -11,11 +11,11 @@ function App() {
 
 	useEffect(
 		() => {
-			socketRef.current = io.connect("http://localhost:4000")
+			socketRef.current = io.connect("http://localhost:8000")
 			socketRef.current.on("message", ({ name, message }) => {
 				setChat([ ...chat, { name, message } ])
 			})
-			return () => socketRef.current.disconnect()
+			return () => socketRef.current.disconnect(true)
 		},
 		[ chat ]
 	)
